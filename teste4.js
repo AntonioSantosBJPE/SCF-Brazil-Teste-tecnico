@@ -1,4 +1,4 @@
-var data = require("./fakeData");
+const data = require("./fakeData");
 
 module.exports = (req, res) => {
   const { id } = req.query;

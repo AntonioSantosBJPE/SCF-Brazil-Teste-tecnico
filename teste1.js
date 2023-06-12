@@ -1,4 +1,4 @@
-var data = require("./fakeData");
+const data = require("./fakeData");
 
 const getUser = (req, res, next) => {
   const { name } = req.query;
@@ -9,7 +9,9 @@ const getUser = (req, res, next) => {
   }
 
   const userFind = data.find((user) => user.name === name);
+
   if (userFind) {
+    userFind.countAccess++;
     res.status(200).json(userFind);
     return;
   }
@@ -18,7 +20,7 @@ const getUser = (req, res, next) => {
 };
 
 const getUsers = (req, res, next) => {
-  res.send(data);
+  res.status(200).json(data);
 };
 
 module.exports = {
