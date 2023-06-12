@@ -1,6 +1,6 @@
-const data = require("./fakeData");
+import { fakeData as data } from "./fakeData.js";
 
-const getUser = (req, res, next) => {
+export const getUser = (req, res, next) => {
   const { name } = req.query;
 
   if (!name) {
@@ -8,7 +8,9 @@ const getUser = (req, res, next) => {
     return;
   }
 
-  const userFind = data.find((user) => user.name === name);
+  const userFind = data.find(
+    (user) => user.name.toLowerCase() === name.toLowerCase()
+  );
 
   if (userFind) {
     userFind.countAccess++;
@@ -19,11 +21,6 @@ const getUser = (req, res, next) => {
   res.status(404).json({ message: "User not found" });
 };
 
-const getUsers = (req, res, next) => {
+export const getUsers = (req, res, next) => {
   res.status(200).json(data);
-};
-
-module.exports = {
-  getUser,
-  getUsers,
 };

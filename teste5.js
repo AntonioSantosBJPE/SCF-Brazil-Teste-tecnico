@@ -1,5 +1,6 @@
-const data = require("./fakeData");
-module.exports = (req, res) => {
+import { fakeData as data } from "./fakeData.js";
+
+export const teste5 = (req, res) => {
   const { name } = req.query;
 
   if (!name) {
@@ -7,7 +8,9 @@ module.exports = (req, res) => {
     return;
   }
 
-  const userFind = data.find((user) => user.name === name);
+  const userFind = data.find(
+    (user) => user.name.toLowerCase() === name.toLowerCase()
+  );
 
   if (userFind) {
     res

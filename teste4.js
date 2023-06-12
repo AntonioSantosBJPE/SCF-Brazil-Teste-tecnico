@@ -1,6 +1,6 @@
-const data = require("./fakeData");
+import { fakeData as data } from "./fakeData.js";
 
-module.exports = (req, res) => {
+export const teste4 = (req, res) => {
   const { id } = req.query;
   const { name, job } = req.body;
 
@@ -12,8 +12,8 @@ module.exports = (req, res) => {
   const userFindIndex = data.findIndex((user) => user.id === Number(id));
 
   if (userFindIndex !== -1) {
-    oldDataUser = data[userFindIndex];
-    newDataUser = {
+    const oldDataUser = data[userFindIndex];
+    const newDataUser = {
       ...oldDataUser,
       name: name ? name : oldDataUser.name,
       job: job ? job : oldDataUser.job,

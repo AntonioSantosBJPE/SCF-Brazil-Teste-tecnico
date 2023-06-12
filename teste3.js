@@ -1,6 +1,6 @@
-const data = require("./fakeData");
+import { fakeData as data } from "./fakeData.js";
 
-module.exports = (req, res) => {
+export const teste3 = (req, res) => {
   const { name } = req.query;
 
   if (!name) {
@@ -8,7 +8,9 @@ module.exports = (req, res) => {
     return;
   }
 
-  const userFindIndex = data.findIndex((user) => user.name === name);
+  const userFindIndex = data.findIndex(
+    (user) => user.name.toLowerCase() === name.toLowerCase()
+  );
   if (userFindIndex !== -1) {
     data.splice(userFindIndex, 1);
     res.status(200).json("success");

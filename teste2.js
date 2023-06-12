@@ -1,7 +1,7 @@
-const data = require("./fakeData");
+import { fakeData as data } from "./fakeData.js";
 
-module.exports = (req, res) => {
-  const { name, job } = req.body;
+export const teste2 = (req, res) => {
+  const { name, job, admin } = req.body;
 
   if (!name || !job) {
     res
@@ -15,6 +15,7 @@ module.exports = (req, res) => {
     id: lastIdData + 1,
     name,
     job,
+    admin: admin ? admin : false,
   };
 
   data.push(newUser);
