@@ -1,15 +1,15 @@
-var data =  require("./fakeData");
+var data = require("./fakeData");
 
-module.exports = function(req, res) {
-  
-    var name =  req.query.name;
+module.exports = function (req, res) {
+  const { name } = req.query;
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            data[i] = null;
-        }
+  if (name) {
+    const userFindIndex = data.findIndex((user) => user.name === name);
+    if (userFindIndex !== -1) {
+      data.splice(userFindIndex, 1);
+      res.status(200).json("success");
+      return;
     }
-
-    res.send("success");
-
+  }
+  res.status(404).json({ message: "User not found" });
 };
