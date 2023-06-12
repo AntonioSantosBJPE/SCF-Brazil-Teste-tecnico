@@ -5,7 +5,10 @@ const getUser = (req, res, next) => {
 
   if (name) {
     const userFind = data.find((user) => user.name === name);
-    if (userFind) res.status(200).json(userFind);
+    if (userFind) {
+      res.status(200).json(userFind);
+      return;
+    }
   }
   res.status(404).json({ message: "User not found" });
 };
